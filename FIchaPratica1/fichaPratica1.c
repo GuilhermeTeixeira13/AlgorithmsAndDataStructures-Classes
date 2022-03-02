@@ -66,13 +66,11 @@ ALUNO *lerVetor (int *N){
   ALUNO *a;
   a = (ALUNO *) malloc (*N * sizeof(ALUNO));
 
-  int x = 0;
-  int *i;
-  i=&x;
+  int i = 0;
 
-  while ((fscanf(f, "%d %d %d %d %d\n", &a[*i].numAluno, &a[*i].Notas[0], &a[*i].Notas[1], &a[*i].Notas[2], &a[*i].Notas[3])) == 5 && *i < *N){
-    a[*i].NotaFinal = maiorVetor(a[*i].Notas, 4);
-    x++;
+  while ((fscanf(f, "%d %d %d %d %d\n", &a[i].numAluno, &a[i].Notas[0], &a[i].Notas[1], &a[i].Notas[2], &a[i].Notas[3])) == 5 && i < *N){
+    a[i].NotaFinal = maiorVetor(a[i].Notas, 4);
+    i++;
   }
   
   fechaFicheiro(f, "Alunos.txt");
@@ -109,9 +107,6 @@ int main(){
 
   ALUNO *alunos;
   alunos = lerVetor(numLinhasApontador);
-
-  //ALUNO aluno1;
-  //aluno1 = lerVetor(numLinhasApontador)[1];
 
   for(int i=0; i<*numLinhasApontador; i++){
     printf("Num.ALuno:%d, Nota1:%d, Nota2:%d, Nota3:%d, Nota4:%d, NotaFinal:%d\n", alunos[i].numAluno, alunos[i].Notas[0], alunos[i].Notas[1], alunos[i].Notas[2], alunos[i].Notas[3], alunos[i].NotaFinal);

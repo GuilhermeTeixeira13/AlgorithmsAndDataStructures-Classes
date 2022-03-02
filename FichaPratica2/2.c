@@ -2,27 +2,27 @@
 #include<string.h>
 
 
-int contaCaracteres(char palavra[], int inicio, int fim){
+int contaCaracteres(char palavra[], int inicio){
     if(palavra[inicio] == '\0')
         return 0;
     else
-        return 1 + contaCaracteres(palavra, inicio+1, fim);
+        return 1 + contaCaracteres(palavra, inicio+1);
 }
 
-int contaCaracteresTerminal(char palavra[], int inicio, int fim, int res){
+int contaCaracteresTerminal(char palavra[], int inicio, int res){
     if(palavra[inicio] == '\0')
         return res;
     else
-        return contaCaracteresTerminal(palavra, inicio+1, fim, res+1);
+        return contaCaracteresTerminal(palavra, inicio+1, res+1);
 }
 
 int main(){
-    char palavra[] = "Palavra";
+    char palavra[] = "Joao";
 
-    int res = contaCaracteres(palavra, 0, strlen(palavra)-1);
+    int res = contaCaracteres(palavra, 0);
     printf("Normal: %d\n", res);
 
-    int resTerm = contaCaracteresTerminal(palavra, 0, strlen(palavra)-1, 0);
+    int resTerm = contaCaracteresTerminal(palavra, 0, 0);
     printf("Terminal: %d\n", resTerm);
 
     return 0;
