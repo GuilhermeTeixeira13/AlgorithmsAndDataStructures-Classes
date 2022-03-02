@@ -1,5 +1,6 @@
 #include<stdio.h>
 
+// Terminal
 int maxDivisors(int n, int i, int res){
     if(i==n+1)
         return res;
