@@ -58,18 +58,34 @@ float *lerVetor (int *N){
   return arrayInt;
 }
 
+double avgRec(float *V, int i, int n){
+  // Last element
+  if (i == n-1)
+    return V[i];
+ 
+  // When index is 0, divide sum computed so
+  // far by n.
+  if (i == 0)
+    return ((V[i] + avgRec(V, i+1, n))/n);
+ 
+  // Compute sum
+  return (V[i] + avgRec(V, i+1, n));
+}
+
 int main(){
   int numLinhas;
   numLinhas = contaLinhas("ReaisPositivos.txt");
   int *numLinhasApontador;
   numLinhasApontador=&numLinhas;
 
-  float *arrayInt;
-  arrayInt = lerVetor(numLinhasApontador);
+  float *arrayFloat;
+  arrayFloat = lerVetor(numLinhasApontador);
 
   for(int i=0; i<*numLinhasApontador; i++){
-    printf("%f\n", arrayInt[i]);
+    printf("%f\n", arrayFloat[i]);
   }
+
+  printf("\n\nMédia: %f\n", avgRec(arrayFloat, 0, numLinhas));
 
   return 0;
 }
