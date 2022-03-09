@@ -1,4 +1,3 @@
-#include "OperacoesPrimarias.h"
 #include<stdio.h>
 #include<stdlib.h>
 

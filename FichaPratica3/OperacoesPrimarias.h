@@ -1,4 +1,3 @@
-#include "ListasLigadasSimples.h"
 #include<stdio.h>
 
 typedef struct{
