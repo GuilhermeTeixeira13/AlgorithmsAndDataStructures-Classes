@@ -62,6 +62,42 @@ int funcao4Iterativa (PNodo L, float pag){
 }
 
 
+// 5.
+float funcao5Iterativa(PNodo L){
+  float maior = L->Elemento.Pagamento;
+  L = L->Prox;
+  while(listaVazia(L) != 1){
+    if(L->Elemento.Pagamento >= maior)
+      maior = L->Elemento.Pagamento;
+    L = L->Prox;
+  }
+
+  return maior;
+}
+float funcao5Rec(PNodo L, float maior){
+  if(listaVazia(L) == 1)
+    return maior;
+  else{
+    if(L->Elemento.Pagamento >= maior)
+      return funcao5Rec(L->Prox, L->Elemento.Pagamento);
+    else
+      return funcao5Rec(L->Prox, maior);
+  }
+}
+
+// 6.
+INFO funcao6Iterativa(PNodo L, float k){
+
+  INFO menorElemento = {.NFatura=0, .NIF=0, .Data[0]=0, .Data[1]=0, .Data[2]=0, .Pagamento=0};
+  while(listaVazia(L) != 1){
+    if(L->Elemento.Pagamento >= k)
+      menorElemento = L->Elemento;
+    L = L->Prox;
+  }
+
+  return menorElemento;
+}
+
 int main(){
   PNodo Lista;
   int tamLista;
@@ -93,6 +129,16 @@ int main(){
   printf("\n\nEXC 4\n[REC] Quantidade de elementos com pagamento >= %f: %d elementos\n", valorPag, qntElemRec);
   printf("[ITER] Quantidade de elementos com pagamento >= %f: %d elementos\n", valorPag, qntElemIt);
 
+  // 5.
+  float maiorIT = funcao5Iterativa(Lista);
+  float maiorREC = funcao5Rec(Lista, 0);
+  printf("\n\nEXC 5\n[ITERATIVA] O maior pagamento da lista é --> %f\n", maiorIT);
+  printf("[RECURSIVA] O maior pagamento da lista é --> %f\n", maiorREC);
+
+  // 6.
+  INFO menorElIT = funcao6Iterativa(Lista, 200);
+  printf("\n\nEXC 5\n[ITERATIVA] O elemento é -->\n");
+  mostrarElemento(menorElIT);
 
   return 0;
 }
