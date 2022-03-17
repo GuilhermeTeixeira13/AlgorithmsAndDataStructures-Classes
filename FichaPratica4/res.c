@@ -98,6 +98,15 @@ INFO funcao6Iterativa(PNodo L, float k){
   return menorElemento;
 }
 
+// 7.
+PNodo funcao7Iterativa(PNodo L, int num){
+  while(listaVazia(L) != 1){
+    if(L->Elemento.NFatura == num)
+      return removerLista(L->Elemento, L);
+    L = L->Prox;
+  }
+}
+
 int main(){
   PNodo Lista;
   int tamLista;
@@ -137,8 +146,15 @@ int main(){
 
   // 6.
   INFO menorElIT = funcao6Iterativa(Lista, 200);
-  printf("\n\nEXC 5\n[ITERATIVA] O elemento é -->\n");
+  printf("\n\nEXC 6\n[ITERATIVA] O elemento é -->\n");
   mostrarElemento(menorElIT);
+
+  // 7.
+  printf("\n\nEXC 7\nPrimeiro elemento:\n");
+  mostrarElemento(Lista->Elemento);
+  Lista = funcao7Iterativa(Lista, Lista->Elemento.NFatura);
+  printf("\nLista sem o primeiro elemento\n\n");
+  mostrarListaInicio(Lista);
 
   return 0;
 }
