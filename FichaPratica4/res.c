@@ -107,6 +107,47 @@ PNodo funcao7Iterativa(PNodo L, int num){
   }
 }
 
+// 8.
+PNodo funcao8(PNodo L){
+  float maior = funcao5Iterativa(L);
+
+  PNodo temp = L, prev;
+
+  // If head node itself holds the key or multiple
+  // occurrences of key
+  while (temp != NULL && temp->Elemento.Pagamento < maior)
+  {
+    L = temp->Prox; // Changed head
+    free(temp); // free old head
+    temp = L; // Change Temp
+  }
+
+  while (temp != NULL)
+  {
+    // Search for the key to be deleted, keep track of
+    // the previous node as we need to change
+    // 'prev->next'
+    while (temp != NULL && temp->Elemento.Pagamento >= maior)
+    {
+      prev = temp;
+      temp = temp->Prox;
+    }
+ 
+    // If key was not present in linked list
+    if (temp == NULL)
+      return L;
+ 
+    // Unlink the node from linked list
+    prev->Prox = temp->Prox;
+ 
+    free(temp); // Free memory
+ 
+    // Update Temp for next iteration of outer loop
+    temp = prev->Prox;
+  }
+  return L;
+}
+
 int main(){
   PNodo Lista;
   int tamLista;
@@ -155,6 +196,10 @@ int main(){
   Lista = funcao7Iterativa(Lista, Lista->Elemento.NFatura);
   printf("\nLista sem o primeiro elemento\n\n");
   mostrarListaInicio(Lista);
+
+  // 8.
+  printf("\n\nEXC 8\nLista sem valores cujo pagamento é menor que o maior pagamento da lista:\n\nMaior pagamento:%f\n\nLista Nova:\n", funcao5Iterativa(Lista));
+  mostrarListaInicio(funcao8(Lista));
 
   return 0;
 }

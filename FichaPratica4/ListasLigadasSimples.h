@@ -44,7 +44,7 @@ void mostrarListaInicio (PNodo L){
     mostrarElemento(P->Elemento);
     P = P->Prox;
   }
-  printf("\n\n");
+  printf("\n");
 }
 
 void mostrarListaInicioRec (PNodo L){
