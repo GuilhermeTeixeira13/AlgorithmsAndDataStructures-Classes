@@ -1,6 +1,4 @@
 #include<stdio.h>
-#include"EADPilha.h"
-#include"Aleatorio.h"
 
 typedef struct{
   int   NFatura;
