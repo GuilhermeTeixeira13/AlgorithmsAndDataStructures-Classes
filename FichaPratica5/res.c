@@ -37,6 +37,7 @@ INFOP funcao2 (PNodoPilha Pilha){
 // .3 - Não altera a pilha
 INFOP funcao3 (PNodoPilha Pilha){
   int pos = 0;
+  INFOP vazio = {.NFatura=0, .NIF=0, .Data[0]=0, .Data[1]=0, .Data[2]=0, .Pagamento=0};
 
   while (Pilha != NULL){
     if(pos == 1)
@@ -44,6 +45,8 @@ INFOP funcao3 (PNodoPilha Pilha){
     Pilha = Pilha->Ant;
     pos++;
   }
+
+  return vazio;
 }
 
 
@@ -53,7 +56,8 @@ int main(){
   int N;
   
   // .1
-  N = gerarNumeroInteiro(8, 15);
+  //N = gerarNumeroInteiro(8, 15);
+  N = 1;
   Pilha = criarPilhaAleatoria(N);
   Pilha1 = Pilha;
   mostrarPilha(Pilha);
