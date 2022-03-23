@@ -17,7 +17,7 @@ PNodo criarListaAleatoria (int N){
   return Lista;
 }
 
-// Ficha1
+// Ficha - 1
 float maiorPagamento(PNodo L, int ano){
   float maiorPagamento = 0;
 
@@ -178,9 +178,14 @@ int main(){
   printf("\n\nDo fim para o início:\n");
   mostrarListaFimRec(Lista);
 
-  // Ficha 1
-  float maiorPag = maiorPagamento(Lista, 2018);
-  printf("Resultado 1 da Ficha: %f", maiorPag);
+  // Ficha - 1
+  printf("----------------------------------------------------------\n");
+  PNodo ListaFicha = criarListaAleatoria(15);
+  mostrarListaFimRec(ListaFicha);
+  int A = (ListaFicha->Prox)->Elemento.Data[2];
+  float maiorPag = maiorPagamento(ListaFicha, A);
+  printf("\nMaior pagamento do ano %d: %f\n", A, maiorPag);
+  printf("----------------------------------------------------------");
 
   // 3.
   int NIFaAnalisar = 100783;
