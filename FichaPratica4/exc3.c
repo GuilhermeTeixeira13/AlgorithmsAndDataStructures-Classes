@@ -211,6 +211,17 @@ PNodo removerListaRec (int X, PNodo L, PNodo LAux) {
   return removerListaRec(X, L, LAux->Prox);
 }
 
+int compararElementos (int X, int Y){
+  if (X > Y)
+    return 1;
+  if (X < Y)
+    return -1;
+  return 0;
+}
+
+void mostrarElemento (int X){
+  printf("%d/", X);
+}
 
 
 int main(){
