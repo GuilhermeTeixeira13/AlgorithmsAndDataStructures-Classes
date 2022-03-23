@@ -17,6 +17,20 @@ PNodo criarListaAleatoria (int N){
   return Lista;
 }
 
+// Ficha1
+float maiorPagamento(PNodo L, int ano){
+  float maiorPagamento = 0;
+
+  while(listaVazia(L) != 1){
+    if(L->Elemento.Data[2] == ano && L->Elemento.Pagamento > maiorPagamento){
+      maiorPagamento = L->Elemento.Pagamento;
+    }
+    L = L->Prox;
+  }
+
+  return maiorPagamento;
+}
+
 // 3.
 float funcao3Rec (PNodo L, int num){
   if(listaVazia(L) == 1)
@@ -163,6 +177,10 @@ int main(){
   mostrarListaInicioRec(Lista);
   printf("\n\nDo fim para o início:\n");
   mostrarListaFimRec(Lista);
+
+  // Ficha 1
+  float maiorPag = maiorPagamento(Lista, 2018);
+  printf("Resultado 1 da Ficha: %f", maiorPag);
 
   // 3.
   int NIFaAnalisar = 100783;
