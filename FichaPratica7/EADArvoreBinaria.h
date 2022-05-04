@@ -1,8 +1,9 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-struct NodoAB {
-  INFOAB  Elemento;
+struct NodoAB
+{
+  INFOAB Elemento;
   struct NodoAB *Esquerda;
   struct NodoAB *Direita;
 };
@@ -11,19 +12,20 @@ typedef struct NodoAB *PNodoAB;
 
 // Operações sobre o Nodo
 
-
-PNodoAB criarNodoAB(INFOAB X){
+PNodoAB criarNodoAB(INFOAB X)
+{
   PNodoAB P;
-  P = (PNodoAB) malloc(sizeof(struct NodoAB));
+  P = (PNodoAB)malloc(sizeof(struct NodoAB));
   if (P == NULL)
-    return  NULL;
+    return NULL;
   P->Elemento = X;
   P->Esquerda = NULL;
   P->Direita = NULL;
   return P;
 }
 
-PNodoAB libertarNodoAB(PNodoAB P){
+PNodoAB libertarNodoAB(PNodoAB P)
+{
   P->Esquerda = NULL;
   P->Direita = NULL;
   free(P);
@@ -33,14 +35,16 @@ PNodoAB libertarNodoAB(PNodoAB P){
 
 // Operações sobre a EAD Árvore Binária
 
-PNodoAB criarAB(){
+PNodoAB criarAB()
+{
   PNodoAB T;
   T = NULL;
   return T;
 }
 
-PNodoAB destruirAB(PNodoAB T){
-  if (T == NULL) 
+PNodoAB destruirAB(PNodoAB T)
+{
+  if (T == NULL)
     return NULL;
   T->Esquerda = destruirAB(T->Esquerda);
   T->Direita = destruirAB(T->Direita);
@@ -48,14 +52,16 @@ PNodoAB destruirAB(PNodoAB T){
   return T;
 }
 
-int ABVazia(PNodoAB T){
+int ABVazia(PNodoAB T)
+{
   if (T == NULL)
     return 1;
   else
     return 0;
 }
 
-int numeroNodosAB (PNodoAB T){
+int numeroNodosAB(PNodoAB T)
+{
   int numEsq, numDir;
   if (T == NULL)
     return 0;
@@ -64,47 +70,55 @@ int numeroNodosAB (PNodoAB T){
   return 1 + numEsq + numDir;
 }
 
-int alturaAB (PNodoAB T) {
-  int  altEsq, altDir;
+int alturaAB(PNodoAB T)
+{
+  int altEsq, altDir;
   if (T == NULL)
     return -1;
   altEsq = alturaAB(T->Esquerda);
   altDir = alturaAB(T->Direita);
   if (altEsq > altDir)
-    return altEsq + 1;  // altura da esquerda + raiz
+    return altEsq + 1; // altura da esquerda + raiz
   else
-    return altDir + 1;  // altura da direita + raiz
+    return altDir + 1; // altura da direita + raiz
 }
 
-void mostrarEmOrdemAB (PNodoAB T) {
-  if (T != NULL) {
+void mostrarEmOrdemAB(PNodoAB T)
+{
+  if (T != NULL)
+  {
     mostrarEmOrdemAB(T->Esquerda);
     mostrarElementoAB(T->Elemento);
     mostrarEmOrdemAB(T->Direita);
   }
 }
 
-void mostrarPreOrdemAB (PNodoAB T) {
-  if (T != NULL) {
+void mostrarPreOrdemAB(PNodoAB T)
+{
+  if (T != NULL)
+  {
     mostrarElementoAB(T->Elemento);
     mostrarPreOrdemAB(T->Esquerda);
     mostrarPreOrdemAB(T->Direita);
   }
 }
 
-void mostrarPosOrdemAB (PNodoAB T) {
-  if (T != NULL) {
+void mostrarPosOrdemAB(PNodoAB T)
+{
+  if (T != NULL)
+  {
     mostrarPosOrdemAB(T->Esquerda);
     mostrarPosOrdemAB(T->Direita);
     mostrarElementoAB(T->Elemento);
   }
 }
 
-PNodoAB pesquisarAB (INFOAB X, PNodoAB T) {
+PNodoAB pesquisarAB(INFOAB X, PNodoAB T)
+{
   PNodoAB P;
   if (T == NULL)
     return NULL;
-  if (compararElementosAB(X, T->Elemento) == 0)  // X = T->Elemento
+  if (compararElementosAB(X, T->Elemento) == 0) // X = T->Elemento
     return T;
   P = pesquisarAB(X, T->Esquerda);
   if (P != NULL)
@@ -113,8 +127,10 @@ PNodoAB pesquisarAB (INFOAB X, PNodoAB T) {
 }
 
 // inserir de forma que fique o mais possível equilibrada
-PNodoAB inserirPorAlturaAB (INFOAB X, PNodoAB T) {
-  if (T == NULL) {
+PNodoAB inserirPorAlturaAB(INFOAB X, PNodoAB T)
+{
+  if (T == NULL)
+  {
     T = criarNodoAB(X);
     return T;
   }
@@ -124,9 +140,11 @@ PNodoAB inserirPorAlturaAB (INFOAB X, PNodoAB T) {
     T->Esquerda = inserirPorAlturaAB(X, T->Esquerda);
   return T;
 }
-    
-PNodoAB procurarFolhaAB (PNodoAB T, INFOAB *X){
-  if (T->Esquerda == NULL && T->Direita == NULL){
+
+PNodoAB procurarFolhaAB(PNodoAB T, INFOAB *X)
+{
+  if (T->Esquerda == NULL && T->Direita == NULL)
+  {
     *X = T->Elemento;
     T = libertarNodoAB(T);
     return T;
@@ -138,20 +156,24 @@ PNodoAB procurarFolhaAB (PNodoAB T, INFOAB *X){
   return T;
 }
 
-PNodoAB removerNodoAB (PNodoAB T) {
+PNodoAB removerNodoAB(PNodoAB T)
+{
   PNodoAB P;
-  INFOAB  X;
-  if (T->Esquerda == NULL && T->Direita == NULL) {   // T é uma folha
+  INFOAB X;
+  if (T->Esquerda == NULL && T->Direita == NULL)
+  { // T é uma folha
     T = libertarNodoAB(T);
     return T;
   }
-  if (T->Esquerda == NULL) {   //  só um filho direito 
+  if (T->Esquerda == NULL)
+  { //  só um filho direito
     P = T;
     T = T->Direita;
     P = libertarNodoAB(P);
     return T;
   }
-  if (T->Direita == NULL) {     // só um filho esquerdo
+  if (T->Direita == NULL)
+  { // só um filho esquerdo
     P = T;
     T = T->Esquerda;
     P = libertarNodoAB(P);
@@ -164,9 +186,11 @@ PNodoAB removerNodoAB (PNodoAB T) {
 }
 
 //  X está na árvore binária T
-PNodoAB removerAB (INFOAB X, PNodoAB T) {
+PNodoAB removerAB(INFOAB X, PNodoAB T)
+{
   PNodoAB P;
-  if (compararElementosAB(T->Elemento, X) == 0) {
+  if (compararElementosAB(T->Elemento, X) == 0)
+  {
     T = removerNodoAB(T);
     return T;
   }
